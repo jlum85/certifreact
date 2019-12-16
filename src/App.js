@@ -6,13 +6,13 @@ import "./reset.css"; // à vérifier
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Page from "./containers/Page";
+import PageContent from "./containers/PageContent";
 
 //const tabPage =
 const lastPage = 8; // à mettre dans global.js
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(1); // page courrante
+  const [currentPage, setCurrentPage] = useState(1); // page courante
   // const [answer, setAnswer] = useState({}); // données saisies dans le formulaire
   console.log("currentPage : " + currentPage);
 
@@ -31,19 +31,14 @@ function App() {
 
   return (
     <Router>
+      {/* <div className="wrapper"> */}
       <Header />
 
       <Switch>
         {/* <Route path="/offer/:id">
           <Offer user={user} />
         </Route>
-        <Route path="/offers">
-          <Offers user={user} />
-        </Route>
 
-        <Route path="/sign_up">
-          <SignUp logIn={logIn} />
-        </Route>
         <Route path="/publish">
           <Publish user={user} />
         </Route> */}
@@ -52,8 +47,13 @@ function App() {
       </Switch>
 
       {/* bouton de navigation dans les pages et progression */}
-      <Page currentPage={currentPage} onPrev={setPrev} onNext={setNext} />
+      <PageContent
+        currentPage={currentPage}
+        onPrev={setPrev}
+        onNext={setNext}
+      />
       <Footer />
+      {/* </div> */}
     </Router>
   );
 }

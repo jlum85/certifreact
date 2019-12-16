@@ -1,11 +1,11 @@
 import React from "react";
 import "../App.css";
-import "./Progress.css";
+import "./ContentProgress.css";
 
 const lastPage = 8;
 
-const Progress = props => {
-  //   console.log(" comp Progress ");
+const ContentProgress = props => {
+  //   console.log("ContentProgress");
   //   console.log(props);
 
   // calcul du % de progression en fonction de la page courante
@@ -50,4 +50,4 @@ const Progress = props => {
   );
 };
 
-export default Progress;
+export default ContentProgress;

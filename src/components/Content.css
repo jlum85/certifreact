@@ -1,0 +1,46 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.contentTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.contentTitle {
+  font-family: "Oswald", sans-serif;
+  font-weight: 800;
+  font-size: 35px;
+  text-transform: uppercase;
+  align-self: center;
+  padding: 0;
+}
+
+.info {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.content-radio {
+  background-color: red;
+  display: flex;
+  /* flex-direction: row;
+  align-items: center; */
+  margin: 20px 0 20px 0;
+}
+
+.flex-radio {
+  background-color: blue;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
