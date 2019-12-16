@@ -24,6 +24,10 @@ body {
   padding: 20px 70px 20px 70px;
 }
 
+:root {
+  --color-orange: #ff9e23;
+}
+
 /* -------------------- HEADER  -------------------- */
 
 header {

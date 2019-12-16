@@ -1,0 +1,32 @@
+/* -------------------- PROGRESS  -------------------- */
+
+.progress {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
+  font-family: "Oswald", sans-serif;
+}
+
+.previous {
+  text-decoration: underline;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.rangeProgress {
+  color: var(--color-orange);
+}
+
+.next {
+  color: white;
+  width: 150px;
+  background-color: var(--color-orange);
+  border-radius: 50px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
