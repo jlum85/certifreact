@@ -6,6 +6,7 @@
 
 :root {
   --color-orange: #ff9e23;
+  --color-orange-shadow: #e57f00;
 }
 
 .pad-tb30 {
@@ -19,6 +20,13 @@
   /* background-color: red; */
 }
 
+.ml-15 {
+  margin-left: 15px;
+}
+
+.white {
+  color: white;
+}
 /* -------------------- HEADER  -------------------- */
 
 .head {
@@ -37,6 +45,14 @@ header p {
 }
 
 /* -------------------- CONTENT  -------------------- */
+
+.loading {
+  font-size: 30px;
+  text-align: center;
+  line-height: 300px;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+}
 
 section {
   color: var(--color-orange);

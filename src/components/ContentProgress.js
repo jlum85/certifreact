@@ -5,8 +5,8 @@ import "./ContentProgress.css";
 const lastPage = 8;
 
 const ContentProgress = props => {
-  //   console.log("ContentProgress");
-  //   console.log(props);
+  // console.log("ContentProgress");
+  // console.log(props);
 
   // calcul du % de progression en fonction de la page courante
   const getProgress = currentPage => {
@@ -29,14 +29,16 @@ const ContentProgress = props => {
 
   return (
     <section className="pad2070 progress">
+      {/* on masque le bouton précédent sur la 1ère page */}
       <div
-        className="previous"
+        className={props.currentPage > 1 ? "previous" : "white"}
         onClick={() => {
           props.onPrev();
         }}
       >
         Précédent
       </div>
+
       <div className="rangeProgress"> {getProgress(props.currentPage)} </div>
       <div
         className="next"

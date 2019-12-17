@@ -16,7 +16,7 @@ const tabPageContent = [
     radioOption: [
       "Résidence principale",
       "Résidence secondaire",
-      "Investissemnt locatif"
+      "Investissement locatif"
     ]
   },
   {
@@ -62,7 +62,8 @@ const tabPageContent = [
 const PageContent = props => {
   console.log("Page");
   console.log(props);
-  const currentPage = props.currentPage;
+  const currentPage = props.userData.currentPage;
+  console.log(currentPage);
 
   const getComponent = page => {
     // on récupère les informations de la page courante
@@ -73,15 +74,29 @@ const PageContent = props => {
 
     // si on a un attribut radioOption, on utilise le composant ContentRadio
     if (pageContent.radioOption) {
-      return <ContentRadio radioOption={pageContent.radioOption} />;
+      return (
+        <ContentRadio
+          radioOption={pageContent.radioOption}
+          userData={props.userData}
+          saveUserData={props.saveUserData}
+        />
+      );
 
       // si on a un attribut input, on utilise le composant ContentInput
     } else if (pageContent.input) {
-      return <ContentInput pageContent={pageContent.input} />;
+      return (
+        <ContentInput
+          radioOption={pageContent.radioOption}
+          userData={props.userData}
+          saveUserData={props.saveUserData}
+        />
+      );
 
       // si on est sur l'avant dernière page, on demande les coordonnées avec le composant Contact
     } else if (pageContent.num === tabPageContent.length - 1) {
-      return <Contact pageContent={pageContent} />;
+      return (
+        <Contact pageContent={pageContent} saveUserData={props.saveUserData} />
+      );
 
       // si on est sur la dernière page, on lance la page de confirmation via le composant Confirming
     } else if (pageContent.num === tabPageContent.length) {
@@ -91,12 +106,12 @@ const PageContent = props => {
 
   return (
     <section className="wrapper content">
-      <ContentTitle pageContent={tabPageContent[props.currentPage - 1]} />
+      <ContentTitle pageContent={tabPageContent[currentPage - 1]} />
 
       {getComponent(currentPage)}
 
       <ContentProgress
-        currentPage={props.currentPage}
+        currentPage={currentPage}
         onPrev={props.onPrev}
         onNext={props.onNext}
       />
