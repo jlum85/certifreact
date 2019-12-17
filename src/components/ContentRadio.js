@@ -43,7 +43,7 @@ const getClassName = (index, checkedItem) => {
 
 const ContentRadio = props => {
   const [checkedIndex, setCheckedIndex] = useState(-1);
-  console.log("ContentRadio");
+  // console.log("ContentRadio");
   // console.log(props);
   // console.log("checkedIndex", checkedIndex);
 
@@ -66,12 +66,11 @@ const ContentRadio = props => {
               value={index}
               checked={checkedIndex === index}
               onChange={() => {
-                console.log("onChange");
-
                 const newObj = { ...props.userData };
                 saveAnswer(newObj, index); // on met à jour l'attribut correspondant de userData
-                console.log("index", index);
-                console.log("newObj", newObj);
+                // console.log("onChange");
+                // console.log("index", index);
+                // console.log("newObj", newObj);
                 props.saveUserData(newObj); // sauvegarde dans le state général
                 setCheckedIndex(index);
               }}
@@ -83,15 +82,7 @@ const ContentRadio = props => {
     }
   };
 
-  const checkParam = () => {
-    console.log("checkParam");
-  };
-
-  return (
-    <form className="content-radio" onSubmit={checkParam()}>
-      {getRadio()}
-    </form>
-  );
+  return <form className="content-radio">{getRadio()}</form>;
 };
 
 export default ContentRadio;

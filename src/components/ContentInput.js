@@ -7,7 +7,7 @@ const ContentInput = props => {
   console.log(props);
 
   // on récupère la liste des options via les props
-  const getInput = () => {};
+  //   const getInput = () => {};
 
   return (
     <div className="content-input">

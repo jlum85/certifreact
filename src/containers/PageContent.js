@@ -63,7 +63,6 @@ const PageContent = props => {
   console.log("Page");
   console.log(props);
   const currentPage = props.userData.currentPage;
-  console.log(currentPage);
 
   const getComponent = page => {
     // on récupère les informations de la page courante
@@ -108,6 +107,7 @@ const PageContent = props => {
     <section className="wrapper content">
       <ContentTitle pageContent={tabPageContent[currentPage - 1]} />
 
+      {/* Chargement du component associé à la page  */}
       {getComponent(currentPage)}
 
       <ContentProgress

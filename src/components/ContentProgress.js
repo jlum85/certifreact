@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import "./ContentProgress.css";
+import RangeSlider from "./RangeSlider";
 
 const lastPage = 8;
 
@@ -10,13 +11,13 @@ const ContentProgress = props => {
 
   // calcul du % de progression en fonction de la page courante
   const getProgress = currentPage => {
-    // on a étapes dont la dernière est la confirmation
-    // 1) Type de bien : 12,5 %
-    // 2) Etat du bien : 25 %
+    // on a 8 étapes dont la dernière est la confirmation
+    // 1) Type de bien : 0
+    // 2) Etat du bien : 14 %
     // ....
-    // 7) Coordonnées :  87,5 % Valider
+    // 7) Coordonnées :  86 %   Valider
     // 8) Confirmation : 100%
-    return Number(currentPage) * (100 / lastPage) + " % ";
+    return Math.round(Number(currentPage - 1) * (100 / (lastPage - 1)));
   };
 
   const getNextLabel = currentPage => {
@@ -39,7 +40,9 @@ const ContentProgress = props => {
         Précédent
       </div>
 
-      <div className="rangeProgress"> {getProgress(props.currentPage)} </div>
+      {/* composant qui gère la barre de progression */}
+      <RangeSlider value={getProgress(props.currentPage)} />
+
       <div
         className="next"
         onClick={() => {
