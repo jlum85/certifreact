@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import logoContact from "../images/visuel-desktop-email.jpg";
 import infos from "../images/infos.png";
+import Cookies from "js-cookie";
 
 const Contact = props => {
   const [mail, setMail] = useState("");
@@ -13,29 +14,34 @@ const Contact = props => {
   console.log(props);
 
   useEffect(() => {
-    // dès qu'on change de page, on récupère le choix qui vient de userData
-    setMail(props.userData.mail);
-    setCdg(props.userData.accept);
+    // dès qu'on change de page, on récupère le choix qui sont dans les cookies
+    let cookie = Cookies.get("userData");
+    if (cookie) {
+      // on met à jour le state à partir des données du cookie
+      const obj = JSON.parse(cookie);
+      setMail(obj.mail);
+      setCdg(obj.accept);
+    }
   }, [props.userData.currentPage]);
 
-  const setError = msgError => {
-    setMsgError(msgError);
-    setIsError(true);
-  };
+  // const setError = msgError => {
+  //   setMsgError(msgError);
+  //   setIsError(true);
+  // };
 
-  const checkParams = () => {
-    let result = false;
-    if (!mail) {
-      setError("Mail non renseigné");
-    } else if (!cdg) {
-      setError("Vous devez accepter les conditions générales de vente");
-    } else {
-      setMsgError();
-      setIsError(false);
-      result = true;
-    }
-    return result;
-  };
+  // const checkParams = () => {
+  //   let result = false;
+  //   if (!mail) {
+  //     setError("Mail non renseigné");
+  //   } else if (!cdg) {
+  //     setError("Vous devez accepter les conditions générales de vente");
+  //   } else {
+  //     setMsgError();
+  //     setIsError(false);
+  //     result = true;
+  //   }
+  //   return result;
+  // };
 
   return (
     <div className="contact">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./Content.css";
+import Cookies from "js-cookie";
 
 const getUserValue = userData => {
   if (userData.currentPage === 1) {
@@ -47,10 +48,19 @@ const ContentRadio = props => {
   // console.log("checkedIndex", checkedIndex);
 
   useEffect(() => {
-    // dès qu'on change de page, on récupère le choix qui vient de userData
-    const index = getUserValue(props.userData);
-    console.log("useEffect", index);
-    setCheckedIndex(index);
+    // dès qu'on change de page, on récupère les choix qui sont dans les cookies
+    let cookie = Cookies.get("userData");
+    if (cookie) {
+      const userData = JSON.parse(cookie);
+      const index = getUserValue(userData);
+      console.log("useEffect", index);
+      setCheckedIndex(index);
+    }
+
+    // // dès qu'on change de page, on récupère le choix qui vient de userData
+    // const index = getUserValue(props.userData);
+    // console.log("useEffect", index);
+    // setCheckedIndex(index);
   }, [props.userData.currentPage]);
 
   // on récupère la liste des options qui viennent de props.radioOption
