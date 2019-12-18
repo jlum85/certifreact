@@ -5,8 +5,9 @@ const Conforming = props => {
   console.log("Conforming");
   console.log(props);
   return (
-    <div className="Conforming">
-      <h2>Conforming</h2>
+    <div className="textConfirm">
+      <span>Votre numéro de dossier est le </span>
+      <span>123456 </span>
     </div>
   );
 };

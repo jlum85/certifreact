@@ -136,11 +136,15 @@ const PageContent = props => {
       {/* Chargement du component associé à la page  */}
       {getComponent(currentPage)}
 
-      <ContentProgress
-        currentPage={currentPage}
-        onPrev={props.onPrev}
-        onNext={props.onNext}
-      />
+      {currentPage === tabPageContent.length ? (
+        <></>
+      ) : (
+        <ContentProgress
+          currentPage={currentPage}
+          onPrev={props.onPrev}
+          onNext={props.onNext}
+        />
+      )}
     </section>
   );
 };

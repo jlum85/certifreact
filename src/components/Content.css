@@ -105,3 +105,22 @@
   font-family: "Oswald", sans-serif;
   line-height: 24px;
 }
+
+/* -------------------- ContentBudget  -------------------- */
+.inputNum {
+  font-size: 20px;
+  width: 250px;
+  margin-left: 20px;
+  padding-right: 10px;
+  font-weight: bold;
+  text-align: right;
+  box-shadow: 0 3px 0 #ffb14d;
+  border-color: #ff9e23;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.euro {
+  font-size: 20px;
+  margin-left: 10px;
+}

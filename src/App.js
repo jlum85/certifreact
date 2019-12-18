@@ -68,7 +68,7 @@ function App() {
 
   const setNext = () => {
     // on s'arrête à l'avant dernière étape , la dernière étant la confirmation
-    if (userData.currentPage < lastPage - 1) {
+    if (userData.currentPage < lastPage) {
       const newObj = { ...userData };
       newObj.currentPage = userData.currentPage + 1;
       saveUserData(newObj);
@@ -102,7 +102,7 @@ function App() {
             userData={userData}
             saveUserData={saveUserData}
           />
-          <Footer />
+          <Footer currentPage={userData.currentPage} />
         </>
       )}
     </Router>

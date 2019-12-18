@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./Content.css";
-import infos from "../images/infos.png";
 import Cookies from "js-cookie";
-
+import LabelForInput from "../components/LabelForInput";
 const axios = require("axios");
 
 const ContentLocation = props => {
@@ -53,10 +52,10 @@ const ContentLocation = props => {
   return (
     <div className="content-input">
       <div className="rowInput rowGrey">
-        <label className="labelInput" htmlFor="country">
-          Dans quel pays se situe votre projet ? *
-          <img className="info" src={infos} alt="infos"></img>
-        </label>
+        <LabelForInput
+          label="Dans quel pays se situe votre projet ? *"
+          htmlFor={country}
+        />
         <input
           className="inputCountry"
           type="text"
@@ -72,10 +71,7 @@ const ContentLocation = props => {
         />
       </div>
       <div className="rowInput">
-        <label className="labelInput" htmlFor="city">
-          Ville ou code postal *
-          <img className="info" src={infos} alt="infos"></img>
-        </label>
+        <LabelForInput label=" Ville ou code postal *" htmlFor={city} />
         <input
           className="inputCity"
           type="text"
