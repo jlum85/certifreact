@@ -78,3 +78,30 @@
   font-family: "Oswald", sans-serif;
   padding: 20px;
 }
+
+/* -------------------- ContentLocation  -------------------- */
+
+.inputCountry {
+  font-size: 20px;
+  width: 300px;
+  margin-left: 20px;
+  padding: 0 10px 0 10px;
+  font-weight: bold;
+}
+
+.inputCity {
+  font-size: 20px;
+  width: 300px;
+  margin-left: 20px;
+  padding: 0 10px 0 10px;
+  font-weight: bold;
+}
+
+.content-description {
+  padding: 10px 20px;
+  font-size: 16px;
+  display: flex;
+  color: black;
+  font-family: "Oswald", sans-serif;
+  line-height: 24px;
+}

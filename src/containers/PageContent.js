@@ -2,7 +2,8 @@ import React from "react";
 
 import ContentTitle from "../components/ContentTitle";
 import ContentRadio from "../components/ContentRadio";
-import ContentInput from "../components/ContentInput";
+import ContentLocation from "../components/ContentLocation";
+import ContentBudget from "../components/ContentBudget";
 import Contact from "../components/Contact";
 import Confirming from "../components/Confirming";
 import ContentProgress from "../components/ContentProgress";
@@ -93,10 +94,19 @@ const PageContent = props => {
         />
       );
 
-      // si on a un attribut input, on utilise le composant ContentInput
-    } else if (pageContent.input) {
+      // si on est en page 5 , on utilise le composant ContentLocation
+    } else if (pageContent.num === 5) {
       return (
-        <ContentInput
+        <ContentLocation
+          input={pageContent.input}
+          userData={props.userData}
+          saveUserData={props.saveUserData}
+        />
+      );
+      // si on est en page 6 , on utilise le composant ContentBudget
+    } else if (pageContent.num === 6) {
+      return (
+        <ContentBudget
           input={pageContent.input}
           userData={props.userData}
           saveUserData={props.saveUserData}

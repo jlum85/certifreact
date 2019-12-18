@@ -37,7 +37,7 @@ const userDefault = {
 function App() {
   const [isLoading, setIsLoading] = useState(true); // pour gérer la lecture des cookies
   const [userData, setUserData] = useState({}); // données saisies dans le formulaire
-  console.log("currentPage : " + userData.currentPage);
+  // console.log("currentPage : " + userData.currentPage);
 
   useEffect(() => {
     // Au chargement, on doit vérifier l'existence de données utilisateurs dans les cookies
