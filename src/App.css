@@ -129,7 +129,7 @@ footer span {
   margin: 20px 50px 20px 50px;
   justify-content: space-between;
   height: 200px;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .infoDevis {
@@ -138,7 +138,6 @@ footer span {
   margin-right: 60px;
   margin-left: 100px;
   font-size: 24px;
-  font-weight: 400;
   font-family: "Oswald", sans-serif;
   display: flex;
   align-items: center;
@@ -160,4 +159,9 @@ footer span {
   font-family: "Oswald", sans-serif;
   padding-top: 30px;
   padding-bottom: 30px;
+  font-size: 20px;
+}
+
+.numDossier {
+  font-weight: bold;
 }

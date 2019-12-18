@@ -6,10 +6,10 @@ import "./reset.css"; // à vérifier
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Confirming from "./components/Confirming";
 import PageContent from "./containers/PageContent";
-
-//const tabPage =
-const lastPage = 8; // à mettre dans global.js
+import BackOffice from "./containers/BackOffice";
+import { lastPage } from "./Global";
 
 // choix par défaut dans les différents écrans à la 1ère connexion
 const userDefault = {
@@ -77,15 +77,21 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <Header
+        onClick={() => {
+          const newObj = { ...userData };
+          newObj.currentPage = 1; // retour sur la 1ère page
+          saveUserData(newObj);
+        }}
+      />
 
       <Switch>
-        {/* <Route path="/offer/:id">
-          <Offer user={user} />
+        <Route path="/backoffice">
+          <BackOffice />
         </Route>
-        <Route path="/publish">
-          <Publish user={user} />
-        </Route> */}
+        <Route path="/confirming">
+          <Confirming dossier={12345} />
+        </Route>
 
         <Route path="/"></Route>
       </Switch>

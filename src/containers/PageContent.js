@@ -8,73 +8,11 @@ import Contact from "../components/Contact";
 import Confirming from "../components/Confirming";
 import ContentProgress from "../components/ContentProgress";
 
-const tabPageContent = [
-  {
-    num: 1,
-    logoInfo: true, // pour afficher le bouton info
-    title: "TYPE DE BIEN",
-    radioOption: ["MAISON", "APPARTEMENT"]
-  },
-  {
-    num: 2,
-    logoInfo: true,
-    title: "ETAT DU BIEN",
-    radioOption: ["ANCIEN", "NEUF"]
-  },
-  {
-    num: 3,
-    logoInfo: true,
-    title: "USAGE DU BIEN",
-    radioOption: [
-      "Résidence principale",
-      "Résidence secondaire",
-      "Investissement locatif"
-    ]
-  },
-  {
-    num: 4,
-    logoInfo: true,
-    title: "Votre situation actuelle",
-    radioOption: [
-      "Locataire",
-      "Propriétaire",
-      "Bénéficiaire d'un logement de fonction",
-      "Hébergé à titre gratuit"
-    ]
-  },
-  {
-    num: 5,
-    title: "Où se situe le bien à financer ?",
-    input: [
-      { title: "Dans quel pays se situe votre projet ?*", type: "country" },
-      { title: "Ville ou code postal*", type: "city" }
-    ],
-    description: `La connaissance du code postal du bien permettra de calculer les frais de notaire selon les conditions en vigueur dans le département concerné.
-    Si vous êtes en recherche de bien sur plusieurs communes, indiquez une commune ciblée.`
-  },
-  {
-    num: 6,
-    title: "DÉFINISSONS LE MONTANT DE VOTRE PROJET",
-    input: [
-      { title: "Montant estimé de votre acquisition*", type: "number" },
-      { title: "Montant estimé des travaux", type: "number" },
-      { title: "Frais de notaire*", type: "notaryFees" },
-      { title: "Budget total estimé du projet", type: "total" }
-    ]
-  },
-  {
-    num: 7,
-    title: "Vos coordonnées"
-  },
-  {
-    num: 8,
-    title: "Et voilà, le formulaire est terminé !"
-  }
-];
+import { tabPageContent } from "../Global";
 
 const PageContent = props => {
-  console.log("Page");
-  console.log(props);
+  // console.log("PageContent");
+  // console.log(props);
   const currentPage = props.userData.currentPage;
 
   const getComponent = page => {
@@ -125,7 +63,7 @@ const PageContent = props => {
 
       // si on est sur la dernière page, on lance la page de confirmation via le composant Confirming
     } else if (pageContent.num === tabPageContent.length) {
-      return <Confirming pageContent={pageContent} />;
+      return <Confirming />;
     }
   };
 

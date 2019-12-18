@@ -3,17 +3,52 @@ import "../App.css";
 import "./Content.css";
 import Cookies from "js-cookie";
 import LabelForInput from "../components/LabelForInput";
+import { api_Vipoco, tabCountry } from "../Global";
+import loadingRound from "../images/loading-round.gif";
 const axios = require("axios");
 
 const ContentLocation = props => {
-  const [isLoading, setIsLoading] = useState(false);
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [suggestion, setSuggestion] = useState([]);
+  const [showSuggest, setShowSuggest] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  //console.log("ContentLocation");
-  // console.log(props);
-  // console.log(suggestion);
+  // construction du select pour la liste des pays
+  const getCountries = () => {
+    return tabCountry.map((item, index) => {
+      return (
+        <option key={index} value={item.toUpperCase()}>
+          {item.toUpperCase()}
+        </option>
+      );
+    });
+  };
+
+  // liste des villes pour l'auto-complete
+  const getCities = () => {
+    return suggestion.map((item, index) => {
+      const { code, city } = item;
+      return (
+        <li
+          key={index}
+          className="autocomplete-item"
+          onClick={() => saveCity(city + " (" + code + ")")}
+        >
+          {city.toUpperCase()} ({code})
+        </li>
+      );
+    });
+  };
+
+  const saveCity = value => {
+    const city = value.toUpperCase();
+    const newObj = { ...props.userData };
+    newObj.city = city;
+    props.saveUserData(newObj); // sauvegarde dans le state général
+    setCity(city);
+    setShowSuggest(false);
+  };
 
   useEffect(() => {
     // dès qu'on change de page, on récupère le choix qui sont dans les cookies
@@ -29,10 +64,9 @@ const ContentLocation = props => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://vicopo.selfbuild.fr/cherche/" + city
-        );
+        const response = await axios.get(api_Vipoco + city);
         const cities = response.data.cities;
+        setShowSuggest(cities.length > 1); // on affiche que si on a trouvé des suggestions
         setSuggestion([...cities]);
         setIsLoading(false);
       } catch (err) {
@@ -50,41 +84,52 @@ const ContentLocation = props => {
   }, [city]);
 
   return (
-    <div className="content-input">
+    <form autoComplete="off" className="content-input">
       <div className="rowInput rowGrey">
         <LabelForInput
           label="Dans quel pays se situe votre projet ? *"
           htmlFor={country}
         />
-        <input
-          className="inputCountry"
-          type="text"
+        <select
           name="country"
+          className="inputCountry"
           value={country}
           onChange={event => {
-            const value = event.target.value;
+            const value = event.target.value.toUpperCase();
             const newObj = { ...props.userData };
             newObj.country = value;
             props.saveUserData(newObj); // sauvegarde dans le state général
             setCountry(value);
           }}
-        />
+        >
+          {getCountries()}
+        </select>
       </div>
       <div className="rowInput">
         <LabelForInput label=" Ville ou code postal *" htmlFor={city} />
-        <input
-          className="inputCity"
-          type="text"
-          name="city"
-          value={city}
-          onChange={event => {
-            const value = event.target.value;
-            const newObj = { ...props.userData };
-            newObj.city = value;
-            props.saveUserData(newObj); // sauvegarde dans le state général
-            setCity(value);
-          }}
-        />
+        <div className="autocomplete">
+          <input
+            className="inputCity"
+            type="text"
+            name="city"
+            value={city}
+            onChange={event => saveCity(event.target.value)}
+          />
+
+          {isLoading ? (
+            <div className="autocomplete-list">
+              Chargement <br></br>
+              <img id="loadingRound" src={loadingRound} alt="Chargement"></img>
+            </div>
+          ) : (
+            <></>
+          )}
+          {showSuggest ? (
+            <ul className="autocomplete-list">{getCities()}</ul>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
       <div className="content-description df-col">
         <p>
@@ -97,7 +142,7 @@ const ContentLocation = props => {
           commune ciblée.
         </p>
       </div>
-    </div>
+    </form>
   );
 };
 

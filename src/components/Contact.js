@@ -10,8 +10,8 @@ const Contact = props => {
   const [isError, setIsError] = useState(false);
   const [msgError, setMsgError] = useState("error");
 
-  console.log("Contact");
-  console.log(props);
+  // console.log("Contact");
+  // console.log(props);
 
   useEffect(() => {
     // dès qu'on change de page, on récupère le choix qui sont dans les cookies

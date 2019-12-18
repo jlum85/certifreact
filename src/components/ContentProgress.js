@@ -2,8 +2,7 @@ import React from "react";
 import "../App.css";
 import "./ContentProgress.css";
 import RangeSlider from "./RangeSlider";
-
-const lastPage = 8;
+import { lastPage } from "../Global";
 
 const ContentProgress = props => {
   // console.log("ContentProgress");

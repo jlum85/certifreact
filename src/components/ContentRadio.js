@@ -53,7 +53,6 @@ const ContentRadio = props => {
     if (cookie) {
       const userData = JSON.parse(cookie);
       const index = getUserValue(userData);
-      console.log("useEffect", index);
       setCheckedIndex(index);
     }
 

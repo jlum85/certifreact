@@ -7,8 +7,8 @@ import RowInput from "../components/RowInput";
 const ContentBudget = props => {
   const [acquisition, setAcquisition] = useState(""); // montant estimé acquisition
   const [works, setWorks] = useState(""); // montant estimé des travaux
-  console.log("ContentBudget");
-  console.log(props);
+  // console.log("ContentBudget");
+  // console.log(props);
 
   // conversion montant formaté en nombre
   const castToNum = value => {
