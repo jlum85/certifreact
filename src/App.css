@@ -4,6 +4,10 @@
 
 /* -------------------- GLOBAL RULE -------------------- */
 
+body {
+  font-family: "Oswald", sans-serif;
+}
+
 :root {
   --color-orange: #ff9e23;
   --color-orange-shadow: #e57f00;
@@ -16,8 +20,8 @@
 }
 
 .wrapper {
-  margin-left: 70px;
-  margin-right: 70px;
+  margin-left: 100px;
+  margin-right: 100px;
   /* background-color: red; */
 }
 
@@ -28,6 +32,36 @@
 .white {
   color: white;
 }
+
+.rowInput {
+  padding: 10px 20px;
+  font-size: 16px;
+  display: flex;
+  color: black;
+  font-family: "Oswald", sans-serif;
+  align-items: center;
+  height: 60px;
+}
+
+.rowGrey {
+  background-color: #f1f1f1;
+}
+
+.error {
+  font-weight: bold;
+  margin-bottom: 0;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+}
+
+.error-show {
+  color: red;
+}
+
+.error-hide {
+  color: white;
+}
+
 /* -------------------- HEADER  -------------------- */
 
 .head {
@@ -59,9 +93,11 @@ section {
   color: var(--color-orange);
 }
 
-/* pour debug  */
-section h2 {
-  font-size: 35px;
+.labelInput {
+  font-size: 20px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* -------------------- FOOTER  -------------------- */
@@ -74,4 +110,37 @@ footer span {
 
 .mention {
   text-decoration: underline;
+}
+
+/* -------------------- CONTACT  -------------------- */
+.contact {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.contactBody {
+  display: flex;
+  margin: 20px 50px 20px 50px;
+  justify-content: space-between;
+  height: 200px;
+}
+
+.infoDevis {
+  color: white;
+  background-color: var(--color-orange);
+  margin-right: 60px;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.logoContact {
+  width: 600px;
+  border-left: 20px;
 }

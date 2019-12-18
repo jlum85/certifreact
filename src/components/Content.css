@@ -62,3 +62,19 @@
   box-shadow: 0 4px 0 var(--color-orange-shadow);
   border-color: var(--color-orange);
 }
+
+/* -------------------- Coordonnées  -------------------- */
+
+.inputMail {
+  font-size: 20px;
+  width: 400px;
+  margin-left: 20px;
+  padding: 0 10px 0 10px;
+  font-weight: bold;
+}
+
+.inputCdg {
+  color: black;
+  font-family: "Oswald", sans-serif;
+  padding: 20px;
+}

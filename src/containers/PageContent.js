@@ -8,10 +8,21 @@ import Confirming from "../components/Confirming";
 import ContentProgress from "../components/ContentProgress";
 
 const tabPageContent = [
-  { num: 1, title: "TYPE DE BIEN", radioOption: ["MAISON", "APPARTEMENT"] },
-  { num: 2, title: "ETAT DU BIEN", radioOption: ["ANCIEN", "NEUF"] },
+  {
+    num: 1,
+    logoInfo: true, // pour afficher le bouton info
+    title: "TYPE DE BIEN",
+    radioOption: ["MAISON", "APPARTEMENT"]
+  },
+  {
+    num: 2,
+    logoInfo: true,
+    title: "ETAT DU BIEN",
+    radioOption: ["ANCIEN", "NEUF"]
+  },
   {
     num: 3,
+    logoInfo: true,
     title: "USAGE DU BIEN",
     radioOption: [
       "Résidence principale",
@@ -21,6 +32,7 @@ const tabPageContent = [
   },
   {
     num: 4,
+    logoInfo: true,
     title: "Votre situation actuelle",
     radioOption: [
       "Locataire",
@@ -85,7 +97,7 @@ const PageContent = props => {
     } else if (pageContent.input) {
       return (
         <ContentInput
-          radioOption={pageContent.radioOption}
+          input={pageContent.input}
           userData={props.userData}
           saveUserData={props.saveUserData}
         />
@@ -94,7 +106,11 @@ const PageContent = props => {
       // si on est sur l'avant dernière page, on demande les coordonnées avec le composant Contact
     } else if (pageContent.num === tabPageContent.length - 1) {
       return (
-        <Contact pageContent={pageContent} saveUserData={props.saveUserData} />
+        <Contact
+          pageContent={pageContent}
+          userData={props.userData}
+          saveUserData={props.saveUserData}
+        />
       );
 
       // si on est sur la dernière page, on lance la page de confirmation via le composant Confirming

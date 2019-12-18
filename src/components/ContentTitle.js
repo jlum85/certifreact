@@ -9,7 +9,11 @@ const ContentTitle = props => {
   return (
     <div className="contentTop">
       <div className="contentTitle">{props.pageContent.title}</div>
-      <img className="info" src={infos} alt="infos"></img>
+      {props.pageContent.logoInfo ? (
+        <img className="info" src={infos} alt="infos"></img>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

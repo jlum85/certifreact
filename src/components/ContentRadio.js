@@ -3,7 +3,6 @@ import "../App.css";
 import "./Content.css";
 
 const getUserValue = userData => {
-  console.log("userData.currentPage", userData.currentPage);
   if (userData.currentPage === 1) {
     return userData.radioType;
   } else if (userData.currentPage === 2) {
@@ -68,9 +67,6 @@ const ContentRadio = props => {
               onChange={() => {
                 const newObj = { ...props.userData };
                 saveAnswer(newObj, index); // on met à jour l'attribut correspondant de userData
-                // console.log("onChange");
-                // console.log("index", index);
-                // console.log("newObj", newObj);
                 props.saveUserData(newObj); // sauvegarde dans le state général
                 setCheckedIndex(index);
               }}
