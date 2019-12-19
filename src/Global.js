@@ -16,6 +16,7 @@ export const userDefault = {
   // Page 6 : Montant du bien
   acquisition: 0,
   works: 0,
+  notaryFees: 0,
   // Page 7 : Coordonnées
   mail: "",
   accept: false

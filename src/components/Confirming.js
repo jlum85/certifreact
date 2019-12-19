@@ -7,7 +7,7 @@ const Conforming = props => {
   return (
     <div className="textConfirm">
       <span>Votre numéro de dossier est le </span>
-      <span className="numDossier">123456 </span>
+      <span className="numDossier">{props.dossier}</span>
     </div>
   );
 };

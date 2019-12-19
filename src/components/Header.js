@@ -10,7 +10,7 @@ const Header = props => {
     <header className="head">
       <div className="pad-tb30 wrapper">
         <img
-          className="logo "
+          className="logo"
           src={logo}
           alt="logo"
           onClick={() => {

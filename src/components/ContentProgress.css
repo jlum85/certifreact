@@ -79,3 +79,23 @@
   bottom: 20px;
   z-index: 1;
 }
+
+.inProgress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.inProgress p {
+  /* font-family: "Oswald", sans-serif; */
+  font-size: 30px;
+  padding-left: 10px;
+}
+
+.loadingProgress {
+  padding-top: 10px;
+  width: 50;
+  height: 50;
+}

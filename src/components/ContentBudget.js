@@ -22,8 +22,8 @@ const ContentBudget = props => {
   };
 
   // calcul des frais de notaire
-  const notaryFees = () => {
-    const value = castToNum(acquisition);
+  const notaryFees = acquisitionFee => {
+    const value = castToNum(acquisitionFee);
     if (value > 0) {
       // un taux de 1,80% sur le prix de l'achat, pour un bien neuf : radioState = 1
       // un taux de 7,38% sur le prix de l'achat, pour un bien ancien :radioState= 0
@@ -38,7 +38,7 @@ const ContentBudget = props => {
 
   // calcul du total budget
   const totalBudget = Math.round(
-    castToNum(acquisition) + castToNum(works) + notaryFees()
+    castToNum(acquisition) + castToNum(works) + notaryFees(acquisition)
   );
 
   useEffect(() => {
@@ -62,6 +62,7 @@ const ContentBudget = props => {
         onChange={value => {
           const newObj = { ...props.userData };
           newObj.acquisition = Math.round(Number(value));
+          newObj.notaryFees = notaryFees(newObj.acquisition); // sauvegarde des frais de naotaire
           props.saveUserData(newObj); // sauvegarde dans le state général
           setAcquisition(castToNum(value));
         }}
@@ -83,7 +84,7 @@ const ContentBudget = props => {
         grey={true}
         name="notaryFees"
         label="Frais de notaire"
-        value={notaryFees()}
+        value={notaryFees(acquisition)}
       />
       <RowInput
         name="totalBudget"

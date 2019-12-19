@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./App.css";
-import "./reset.css"; // à vérifier
+import "./reset.css";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Confirming from "./components/Confirming";
 import PageContent from "./containers/PageContent";
 import BackOffice from "./containers/BackOffice";
 import { userDefault, lastPage } from "./Global";
@@ -30,7 +29,7 @@ function App() {
 
   const saveUserData = newObj => {
     // sauvegarde des choix utilisateurs dans les cookies et mise à jour du state
-    Cookies.set("userData", JSON.stringify(newObj));
+    Cookies.set("userData", JSON.stringify(newObj), { expires: 1 }); // expire au bout de 1 jour
     setUserData(newObj);
   };
 
@@ -64,9 +63,6 @@ function App() {
       <Switch>
         <Route path="/backoffice">
           <BackOffice />
-        </Route>
-        <Route path="/confirming">
-          <Confirming dossier={12345} />
         </Route>
 
         <Route path="/"></Route>

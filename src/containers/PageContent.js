@@ -63,7 +63,7 @@ const PageContent = props => {
 
       // si on est sur la dernière page, on lance la page de confirmation via le composant Confirming
     } else if (pageContent.num === tabPageContent.length) {
-      return <Confirming />;
+      return <Confirming dossier={props.userData.dossier} />;
     }
   };
 
@@ -81,6 +81,8 @@ const PageContent = props => {
           currentPage={currentPage}
           onPrev={props.onPrev}
           onNext={props.onNext}
+          userData={props.userData}
+          saveUserData={props.saveUserData}
         />
       )}
     </section>
