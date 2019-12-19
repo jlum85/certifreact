@@ -13,6 +13,7 @@ const ContentLocation = props => {
   const [suggestion, setSuggestion] = useState([]);
   const [showSuggest, setShowSuggest] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [disableLoadSuggest, setDisableLoadSuggest] = useState(false);
 
   // construction du select pour la liste des pays
   const getCountries = () => {
@@ -25,6 +26,19 @@ const ContentLocation = props => {
     });
   };
 
+  // sauvegarde de la ville dans le state et dans userData
+  const saveCity = (value, clicked) => {
+    const city = value.toUpperCase();
+    const newObj = { ...props.userData };
+    newObj.city = city;
+    // si on a sélectionné un choix dans la liste, pas besoin de retenter un chargement des suggestions quand on charge la page
+    newObj.disableLoadSuggest = clicked;
+    props.saveUserData(newObj); // sauvegarde dans le state général
+    setDisableLoadSuggest(clicked);
+    setCity(city);
+    setShowSuggest(false);
+  };
+
   // liste des villes pour l'auto-complete
   const getCities = () => {
     return suggestion.map((item, index) => {
@@ -33,21 +47,12 @@ const ContentLocation = props => {
         <li
           key={index}
           className="autocomplete-item"
-          onClick={() => saveCity(city + " (" + code + ")")}
+          onClick={() => saveCity(city + " (" + code + ")", true)}
         >
           {city.toUpperCase()} ({code})
         </li>
       );
     });
-  };
-
-  const saveCity = value => {
-    const city = value.toUpperCase();
-    const newObj = { ...props.userData };
-    newObj.city = city;
-    props.saveUserData(newObj); // sauvegarde dans le state général
-    setCity(city);
-    setShowSuggest(false);
   };
 
   useEffect(() => {
@@ -56,6 +61,7 @@ const ContentLocation = props => {
     if (cookie) {
       // on met à jour le state à partir des données du cookie
       const obj = JSON.parse(cookie);
+      setDisableLoadSuggest(obj.disableLoadSuggest); // pour éviter des appels Vipoco alors qu'on a déjà une ville valide
       setCountry(obj.country);
       setCity(obj.city);
     }
@@ -76,12 +82,12 @@ const ContentLocation = props => {
       }
     };
 
-    // dès qu'on commence à saisir au moins 3 caractères, on fait appel à Vicopo pour proposer des suggestions
-    if (city.length > 2) {
+    // dès qu'on commence à saisir au moins 3 caractères, on fait appel à Vicopo sauf si on a déj une ville valide
+    if (city.length > 2 && !disableLoadSuggest) {
       setIsLoading(true);
       fetchData();
     }
-  }, [city]);
+  }, [city, disableLoadSuggest]);
 
   return (
     <form autoComplete="off" className="content-input">
@@ -113,7 +119,7 @@ const ContentLocation = props => {
             type="text"
             name="city"
             value={city}
-            onChange={event => saveCity(event.target.value)}
+            onChange={event => saveCity(event.target.value, false)}
           />
 
           {isLoading ? (

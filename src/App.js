@@ -9,35 +9,11 @@ import Footer from "./components/Footer";
 import Confirming from "./components/Confirming";
 import PageContent from "./containers/PageContent";
 import BackOffice from "./containers/BackOffice";
-import { lastPage } from "./Global";
-
-// choix par défaut dans les différents écrans à la 1ère connexion
-const userDefault = {
-  // étape en cours, page 1  par défaut
-  currentPage: 1,
-  // page 1  : Type de bien , aucune sélection par défaut
-  radioType: -1,
-  // page 2  : Etat du bien , aucune sélection par défaut
-  radioState: -1,
-  // page 3  : Usage du bien , aucune sélection par défaut
-  radioUse: -1,
-  // page 4  : Situation actuelle , aucune sélection par défaut
-  radioSituation: -1,
-  // Page 5 : localisation du bien
-  country: "FRANCE",
-  city: "",
-  // Page 6 : Montant du bien
-  acquisition: 0,
-  works: 0,
-  // Page 7 : Coordonnées
-  mail: "",
-  accept: false
-};
+import { userDefault, lastPage } from "./Global";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true); // pour gérer la lecture des cookies
   const [userData, setUserData] = useState({}); // données saisies dans le formulaire
-  // console.log("currentPage : " + userData.currentPage);
 
   useEffect(() => {
     // Au chargement, on doit vérifier l'existence de données utilisateurs dans les cookies
