@@ -108,7 +108,7 @@ const ContentProgress = props => {
           </div>
 
           <RangeSlider value={getProgress(props.currentPage)} />
-          <div className="next" onClick={() => onNext(props.currentPage)}>
+          <div className="orange-btn" onClick={() => onNext(props.currentPage)}>
             {getNextLabel(props.currentPage)}
           </div>
         </>

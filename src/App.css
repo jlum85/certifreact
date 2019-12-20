@@ -33,6 +33,11 @@ body {
   color: white;
 }
 
+.df-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
 .df-col {
   display: flex;
   flex-direction: column;
@@ -83,6 +88,24 @@ header p {
   margin-top: 5px;
   font-size: 18px;
   font-family: "Oswald", sans-serif;
+}
+
+.headerLeft {
+  width: 400px;
+}
+
+.orange-btn {
+  color: white;
+  width: 150px;
+  background-color: var(--color-orange);
+  border-radius: 50px;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* -------------------- CONTENT  -------------------- */
@@ -165,4 +188,65 @@ footer span {
 
 .numDossier {
   font-weight: bold;
+}
+
+/* -------------------- BackOffice  -------------------- */
+.headerSynthese {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Oswald", sans-serif;
+  color: white;
+  margin: 20px 50px 20px 50px;
+  padding: 0 30px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #1976d2;
+}
+
+.containerSynthese {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Oswald", sans-serif;
+  height: 40px;
+}
+
+.removeButton {
+  cursor: pointer;
+}
+
+.rowSynthese {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+.bloclinkDevis {
+  flex: 1;
+  padding: 0 30px;
+  margin-right: 50px;
+  margin-left: 10px;
+}
+.linkDevis {
+  text-decoration: none;
+  width: 100%;
+}
+
+.size1 {
+  width: 100px;
+  text-align: center;
+}
+
+.size2 {
+  width: 200px;
+  text-align: center;
+}
+
+.rowGrey {
+  background-color: rgb(215, 222, 226);
 }

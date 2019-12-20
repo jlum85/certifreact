@@ -125,7 +125,11 @@ const ContentLocation = props => {
           {isLoading ? (
             <div className="autocomplete-list">
               Chargement <br></br>
-              <img id="loadingRound" src={loadingRound} alt="Chargement"></img>
+              <img
+                className="loadingRound"
+                src={loadingRound}
+                alt="Chargement"
+              ></img>
             </div>
           ) : (
             <></>

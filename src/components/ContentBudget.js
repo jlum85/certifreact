@@ -61,7 +61,7 @@ const ContentBudget = props => {
         value={acquisition}
         onChange={value => {
           const newObj = { ...props.userData };
-          newObj.acquisition = Math.round(Number(value));
+          newObj.acquisition = Math.round(castToNum(value));
           newObj.notaryFees = notaryFees(newObj.acquisition); // sauvegarde des frais de naotaire
           props.saveUserData(newObj); // sauvegarde dans le state général
           setAcquisition(castToNum(value));
@@ -74,7 +74,7 @@ const ContentBudget = props => {
         value={works}
         onChange={value => {
           const newObj = { ...props.userData };
-          newObj.works = Math.round(Number(value));
+          newObj.works = Math.round(castToNum(value));
           props.saveUserData(newObj); // sauvegarde dans le state général
           setWorks(castToNum(value));
         }}

@@ -1,0 +1,36 @@
+.headerDevis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-top: 2rem;
+  margin-left: 5em;
+  margin-right: 5em;
+  padding: 0 2em;
+  border-radius: 8px;
+}
+
+.rowItem {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 7em;
+  margin-right: 7em;
+  padding: 0 2em;
+  line-height: 40px;
+}
+
+.items:nth-child(odd) {
+  background-color: rgb(215, 222, 226);
+}
+
+.dateItem,
+.labelItem,
+.valueItem {
+  display: flex;
+  justify-content: flex-start;
+  width: 200px;
+}
+
+.valueItem {
+  justify-content: flex-end;
+}

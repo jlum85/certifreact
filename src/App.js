@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import Cookies from "js-cookie";
 import "./App.css";
 import "./reset.css";
@@ -8,11 +13,14 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageContent from "./containers/PageContent";
 import BackOffice from "./containers/BackOffice";
+import Login from "./containers/Login";
+import Record from "./containers/Record";
 import { userDefault, lastPage } from "./Global";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true); // pour gérer la lecture des cookies
   const [userData, setUserData] = useState({}); // données saisies dans le formulaire
+  const [token, setToken] = useState(Cookies.get("token") || "");
 
   useEffect(() => {
     // Au chargement, on doit vérifier l'existence de données utilisateurs dans les cookies
@@ -61,28 +69,40 @@ function App() {
       />
 
       <Switch>
-        <Route path="/backoffice">
-          <BackOffice />
+        <Route path="/devis/:id">
+          <Record token={token} />
         </Route>
 
-        <Route path="/"></Route>
-      </Switch>
+        <Route path="/backoffice">
+          {/* si pas de token,  on redirige vers  l'écran de login */}
+          {!token ? <Redirect to="login" /> : <BackOffice token={token} />}
+        </Route>
 
-      {isLoading ? (
-        <p className="wrapper loading">Chargement en cours</p>
-      ) : (
-        <>
-          {/* formulaires de saisie, bouton de navigation et progression dans les pages */}
-          <PageContent
-            currentPage={userData.currentPage}
-            onPrev={setPrev}
-            onNext={setNext}
-            userData={userData}
-            saveUserData={saveUserData}
-          />
-          <Footer currentPage={userData.currentPage} />
-        </>
-      )}
+        <Route path="/login">
+          {/* si on a déja le token pas besoin de passer par l'écran de login */}
+          {token ? <Redirect to="backoffice" /> : <Login setToken={setToken} />}
+        </Route>
+
+        <Route path="/">
+          {isLoading ? (
+            <p className="wrapper loading">Chargement en cours</p>
+          ) : (
+            <>
+              {/* formulaires de saisie, bouton de navigation et progression dans les pages */}
+              <PageContent
+                currentPage={userData.currentPage}
+                onPrev={setPrev}
+                onNext={setNext}
+                userData={userData}
+                saveUserData={saveUserData}
+              />
+              <Footer currentPage={userData.currentPage} />
+            </>
+          )}
+        </Route>
+
+        {/* <Route path="/"></Route> */}
+      </Switch>
     </Router>
   );
 }

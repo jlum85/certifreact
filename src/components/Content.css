@@ -129,10 +129,16 @@
   font-family: "Oswald", sans-serif;
   line-height: 24px;
 }
+.loadingBox {
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+}
 
-#loadingRound {
-  width: 50;
-  height: 50;
+.loadingRound {
+  height: 50px;
+  width: 50px;
 }
 
 /* -------------------- ContentBudget  -------------------- */

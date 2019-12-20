@@ -22,43 +22,50 @@ export const userDefault = {
   accept: false
 };
 
+export const API_BACK = "http://localhost:3000/";
+
 export const api_Vipoco = "https://vicopo.selfbuild.fr/cherche/";
 
 export const lastPage = 8;
+
+export const tabType = ["MAISON", "APPARTEMENT"];
+export const tabState = ["ANCIEN", "NEUF"];
+export const tabUsage = [
+  "Résidence principale",
+  "Résidence secondaire",
+  "Investissement locatif"
+];
+export const tabSituation = [
+  "Locataire",
+  "Propriétaire",
+  "Bénéficiaire d'un logement de fonction",
+  "Hébergé à titre gratuit"
+];
 
 export const tabPageContent = [
   {
     num: 1,
     logoInfo: true, // pour afficher le bouton info
     title: "TYPE DE BIEN",
-    radioOption: ["MAISON", "APPARTEMENT"]
+    radioOption: tabType
   },
   {
     num: 2,
     logoInfo: true,
     title: "ETAT DU BIEN",
-    radioOption: ["ANCIEN", "NEUF"]
+    radioOption: tabState
   },
   {
     num: 3,
     logoInfo: true,
     title: "USAGE DU BIEN",
-    radioOption: [
-      "Résidence principale",
-      "Résidence secondaire",
-      "Investissement locatif"
-    ]
+    radioOption: tabUsage
   },
   {
     num: 4,
     logoInfo: true,
     title: "Votre situation actuelle",
-    radioOption: [
-      "Locataire",
-      "Propriétaire",
-      "Bénéficiaire d'un logement de fonction",
-      "Hébergé à titre gratuit"
-    ]
+    radioOption: tabSituation
   },
   {
     num: 5,
@@ -89,6 +96,15 @@ export const tabPageContent = [
     title: "Et voilà, le formulaire est terminé !"
   }
 ];
+
+// formatage des montants pour les rendre plus lisibles
+export const formattedNumber = value => {
+  if (value) {
+    return value.toLocaleString();
+  } else {
+    return 0;
+  }
+};
 
 // liste des pays pour alimenter le Select
 export const tabCountry = [
