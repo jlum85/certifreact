@@ -107,8 +107,6 @@ function App() {
             </>
           )}
         </Route>
-
-        {/* <Route path="/"></Route> */}
       </Switch>
     </Router>
   );

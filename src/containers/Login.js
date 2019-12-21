@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
+import { API_BACK } from "../Global";
 import "../App.css";
 
-const API_BACK = "http://localhost:3000/user/signin";
+const API = API_BACK + "user/signin";
 
 const Login = props => {
   const history = useHistory();
@@ -17,56 +18,38 @@ const Login = props => {
     setIsError(true);
   };
 
-  const onAnswer = response => {
-    const result = response.data;
-    if (result && result.token) {
-      Cookies.set("token", result.token, { expires: 1 }); // expire au bout de 1 jour
-      props.setToken(result.token);
-      history.push("/backoffice");
-    } else {
-      setError("Mot de passe incorrect");
-    }
-    return result;
-  };
-
-  const onError = error => {
-    const result = error.response;
-    if (result) {
-      if (result.data) {
-        console.log(result.data);
-      } else {
-        console.log(result);
-      }
-    } else {
-      console.log(error);
-    }
-    setError("Mot de passe incorrect");
-  };
-
   const checkParams = () => {
     let result = false;
     if (!password) {
       setError("Mot de passe non renseigné");
     } else {
-      setMsgError();
+      setMsgError("");
       setIsError(false);
       result = true;
     }
     return result;
   };
 
-  const getLogin = () => {
+  const getLogin = async () => {
     if (checkParams()) {
-      axios
-        .post(
-          API_BACK,
-          {
-            password: password
-          },
+      try {
+        const response = await axios.post(
+          API,
+          { password: password },
           { headers: { Accept: "application/json" } }
-        )
-        .then(onAnswer)
-        .catch(onError);
+        );
+        const result = response.data;
+        if (result && result.token) {
+          Cookies.set("token", result.token, { expires: 1 }); // expire au bout de 1 jour
+          props.setToken(result.token);
+          history.push("/backoffice");
+        } else {
+          setError("Mot de passe incorrect");
+        }
+      } catch (err) {
+        console.log(err.message);
+        setError("Mot de passe incorrect");
+      }
     }
   };
 
