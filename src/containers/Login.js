@@ -74,7 +74,7 @@ const Login = props => {
   };
 
   return (
-    <section className="wrapper content">
+    <section className="wrapper center">
       <form
         className="formConnect"
         onSubmit={event => {
@@ -82,11 +82,11 @@ const Login = props => {
           getLogin();
         }}
       >
-        <h2 className="connexion">Connexion</h2>
+        <h2 className="connexion">Connexion au BackOffice</h2>
         <div className="signInput">
           <p>Mot de passe</p>
           <input
-            className="inputSU"
+            className="inputPassword"
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
@@ -94,10 +94,10 @@ const Login = props => {
         </div>
 
         <div className="flexBtn">
-          <button className="signBtn">Se connecter</button>
           <p className={"error " + (isError ? "error-show" : "error-hide")}>
             {msgError}
           </p>
+          <button className="signBtn">Se connecter</button>
         </div>
       </form>
     </section>

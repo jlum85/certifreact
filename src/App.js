@@ -14,13 +14,15 @@ import Footer from "./components/Footer";
 import PageContent from "./containers/PageContent";
 import BackOffice from "./containers/BackOffice";
 import Login from "./containers/Login";
-import Record from "./containers/Record";
+import Estimate from "./containers/Estimate";
 import { userDefault, lastPage } from "./Global";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true); // pour gérer la lecture des cookies
   const [userData, setUserData] = useState({}); // données saisies dans le formulaire
   const [token, setToken] = useState(Cookies.get("token") || "");
+
+  console.log("token", token);
 
   useEffect(() => {
     // Au chargement, on doit vérifier l'existence de données utilisateurs dans les cookies
@@ -70,7 +72,7 @@ function App() {
 
       <Switch>
         <Route path="/devis/:id">
-          <Record token={token} />
+          <Estimate token={token} />
         </Route>
 
         <Route path="/backoffice">

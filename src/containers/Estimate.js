@@ -15,7 +15,7 @@ const axios = require("axios");
 
 const API = API_BACK + "devis/";
 
-const Record = props => {
+const Estimate = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [devis, setDevis] = useState([]);
   const [token] = useState(props.token || "");
@@ -93,4 +93,4 @@ const Record = props => {
   );
 };
 
-export default Record;
+export default Estimate;

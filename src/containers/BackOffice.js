@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import LoadingGif from "../components/LoadingGif";
 import "../App.css";
 import "./BackOffice.css";
-import Cookies from "js-cookie";
 import { tabType, tabState, formattedNumber, API_BACK } from "../Global";
 const axios = require("axios");
 
@@ -13,7 +12,10 @@ const API_DEL = API_BACK + "devis/delete/";
 const BackOffice = props => {
   const [devis, setDevis] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [token] = useState(Cookies.get("token") || "");
+  const [token] = useState(props.token || "");
+
+  console.log("BackOffice");
+  console.log("token", props.token);
 
   useEffect(() => {
     const fetchData = async () => {
