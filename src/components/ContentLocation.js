@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import "../App.css";
 import "./Content.css";
-import Cookies from "js-cookie";
 import LabelForInput from "../components/LabelForInput";
+import ShowError from "./ShowError";
 import { api_Vipoco, tabCountry } from "../Global";
 import loadingRound from "../images/loading-round.gif";
 const axios = require("axios");
@@ -152,6 +153,7 @@ const ContentLocation = props => {
           commune ciblée.
         </p>
       </div>
+      <ShowError error={props.error} page={props.userData.currentPage} />
     </form>
   );
 };

@@ -1,8 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import logoContact from "../images/visuel-desktop-email.jpg";
+import ValidationIcon from "../components/ValidationIcon";
+
 import infos from "../images/infos.png";
 import Cookies from "js-cookie";
+import ShowError from "./ShowError";
+
+const checkMail = email => {
+  let result = 0;
+  if (!email || email.trim() === "") {
+    result = 0;
+  } else {
+    // expression régulière pour valider le mail
+    //   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (re.test(email)) {
+      result = 1;
+    } else {
+      result = -1;
+    }
+  }
+  // console.log("checkMail", email, result);
+  return result;
+};
 
 const Contact = props => {
   const [mail, setMail] = useState("");
@@ -40,13 +62,14 @@ const Contact = props => {
           name="mail"
           value={mail}
           onChange={event => {
-            const value = event.target.value;
+            const value = event.target.value.trim();
             const newObj = { ...props.userData };
             newObj.mail = value;
             props.saveUserData(newObj); // sauvegarde dans le state général
             setMail(value);
           }}
         />
+        <ValidationIcon status={checkMail(mail)} />
       </div>
       <div className="inputCdg">
         <input
@@ -65,9 +88,7 @@ const Contact = props => {
           J’accepte de recevoir par email des propositions de Meilleurtaux.
         </label>
       </div>
-      {/* <p className={"error " + (isError ? "error-show" : "error-hide")}>
-        {msgError}
-      </p> */}
+      <ShowError error={props.error} page={props.userData.currentPage} />
     </div>
   );
 };

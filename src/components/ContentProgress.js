@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "../App.css";
 import "./ContentProgress.css";
 import RangeSlider from "./RangeSlider";
-import { lastPage } from "../Global";
+import { API_BACK, lastPage } from "../Global";
 import loadingRound from "../images/loading-round.gif";
 const axios = require("axios");
 
-const API_BACK = "http://localhost:3000/devis/create";
+const API = API_BACK + "devis/create";
 
 const ContentProgress = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ const ContentProgress = props => {
 
   const checkParam = userData => {
     const page = userData.currentPage;
-    const result = { hasError: false, message: "error" };
+    const result = { hasError: false, message: "error", page: 0 };
 
     if (page === 1) {
       result.hasError = userData.radioType < 0;
@@ -68,7 +68,10 @@ const ContentProgress = props => {
         result.message = "Mail non renseigné !";
       }
     }
-    console.log(result);
+
+    if (result.hasError) {
+      result.page = page;
+    }
     return result;
   };
 
@@ -76,7 +79,7 @@ const ContentProgress = props => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        API_BACK,
+        API,
         {
           mail: userData.mail,
           propertyType: userData.radioType,
@@ -112,14 +115,14 @@ const ContentProgress = props => {
 
   const onNext = async currentPage => {
     const checkObj = checkParam(props.userData); // on vérifie si on peut passer à l'étape suivante
-    props.setError({ ...checkObj });
-    if (!checkObj.hasError) {
-      if (currentPage === lastPage - 1) {
-        await saveData(props.userData);
+    if (!(checkObj.hasError && checkObj.page === props.userData.currentPage)) {
+      if (currentPage === 7) {
+        await saveData(props.userData); // page de validation et sauvegarde du devis
       } else {
         props.onNext();
       }
     }
+    props.setError({ ...checkObj });
   };
 
   return (

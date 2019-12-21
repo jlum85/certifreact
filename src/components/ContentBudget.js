@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./Content.css";
 import Cookies from "js-cookie";
+import ShowError from "./ShowError";
 import RowInput from "../components/RowInput";
 
 const ContentBudget = props => {
@@ -53,45 +54,48 @@ const ContentBudget = props => {
   }, [props.userData.currentPage]);
 
   return (
-    <div className="df-col">
-      <RowInput
-        grey={true}
-        name="acquisition"
-        label="Montant estimé de votre acquisition *"
-        value={acquisition}
-        onChange={value => {
-          const newObj = { ...props.userData };
-          newObj.acquisition = Math.round(castToNum(value));
-          newObj.notaryFees = notaryFees(newObj.acquisition); // sauvegarde des frais de naotaire
-          props.saveUserData(newObj); // sauvegarde dans le state général
-          setAcquisition(castToNum(value));
-        }}
-      />
+    <>
+      <div className="df-col">
+        <RowInput
+          grey={true}
+          name="acquisition"
+          label="Montant estimé de votre acquisition *"
+          value={acquisition}
+          onChange={value => {
+            const newObj = { ...props.userData };
+            newObj.acquisition = Math.round(castToNum(value));
+            newObj.notaryFees = notaryFees(newObj.acquisition); // sauvegarde des frais de naotaire
+            props.saveUserData(newObj); // sauvegarde dans le state général
+            setAcquisition(castToNum(value));
+          }}
+        />
 
-      <RowInput
-        name="works"
-        label="Montant estimé des travaux"
-        value={works}
-        onChange={value => {
-          const newObj = { ...props.userData };
-          newObj.works = Math.round(castToNum(value));
-          props.saveUserData(newObj); // sauvegarde dans le state général
-          setWorks(castToNum(value));
-        }}
-      />
+        <RowInput
+          name="works"
+          label="Montant estimé des travaux"
+          value={works}
+          onChange={value => {
+            const newObj = { ...props.userData };
+            newObj.works = Math.round(castToNum(value));
+            props.saveUserData(newObj); // sauvegarde dans le state général
+            setWorks(castToNum(value));
+          }}
+        />
 
-      <RowInput
-        grey={true}
-        name="notaryFees"
-        label="Frais de notaire"
-        value={notaryFees(acquisition)}
-      />
-      <RowInput
-        name="totalBudget"
-        label="Budget total estimé du projet"
-        value={totalBudget}
-      />
-    </div>
+        <RowInput
+          grey={true}
+          name="notaryFees"
+          label="Frais de notaire"
+          value={notaryFees(acquisition)}
+        />
+        <RowInput
+          name="totalBudget"
+          label="Budget total estimé du projet"
+          value={totalBudget}
+        />
+      </div>
+      <ShowError error={props.error} page={props.userData.currentPage} />
+    </>
   );
 };
 

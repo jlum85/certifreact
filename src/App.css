@@ -22,7 +22,6 @@ body {
 .wrapper {
   margin-left: 100px;
   margin-right: 100px;
-  /* background-color: red; */
 }
 
 .ml-15 {
@@ -154,7 +153,6 @@ footer span {
   margin: 20px 50px 20px 50px;
   justify-content: space-between;
   height: 200px;
-  /* background-color: red; */
 }
 
 .infoDevis {
@@ -282,6 +280,7 @@ footer span {
   font-size: 18px;
   line-height: 40px;
   text-decoration: none;
+  color: black;
 }
 
 .bloclinkDevis {

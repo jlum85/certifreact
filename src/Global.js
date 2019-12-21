@@ -19,7 +19,8 @@ export const userDefault = {
   notaryFees: 0,
   // Page 7 : Coordonnées
   mail: "",
-  accept: false
+  accept: false,
+  dossier: ""
 };
 
 export const API_BACK = "http://localhost:3000/";

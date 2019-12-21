@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import ContentTitle from "../components/ContentTitle";
 import ContentRadio from "../components/ContentRadio";
 import ContentLocation from "../components/ContentLocation";
@@ -7,11 +6,14 @@ import ContentBudget from "../components/ContentBudget";
 import Contact from "../components/Contact";
 import Confirming from "../components/Confirming";
 import ContentProgress from "../components/ContentProgress";
-
 import { tabPageContent } from "../Global";
 
 const PageContent = props => {
-  const [error, setError] = useState({ hasError: false, message: "error" });
+  const [error, setError] = useState({
+    hasError: false,
+    message: "error",
+    page: 0 // on stocke l'erreur de le dernière page mais si on fait précédent on n'affiche que si page est égal à la  page courante
+  });
   // console.log("PageContent");
   // console.log(props);
   const currentPage = props.userData.currentPage;
@@ -52,6 +54,7 @@ const PageContent = props => {
           userData={props.userData}
           saveUserData={props.saveUserData}
           error={error}
+          setError={setError}
         />
       );
 
@@ -67,7 +70,7 @@ const PageContent = props => {
       );
 
       // si on est sur la dernière page, on lance la page de confirmation via le composant Confirming
-    } else if (pageContent.num === tabPageContent.length) {
+    } else if (pageContent.num === 8) {
       return <Confirming dossier={props.userData.dossier} />;
     }
   };

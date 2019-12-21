@@ -14,8 +14,8 @@ const BackOffice = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [token] = useState(props.token || "");
 
-  console.log("BackOffice");
-  console.log("token", props.token);
+  // console.log("BackOffice");
+  // console.log("token", props.token);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,10 +43,8 @@ const BackOffice = props => {
 
   const removeItem = async dossier => {
     setIsLoading(true);
-    console.log(API_DEL + dossier);
-    console.log(token);
     try {
-      const response = await axios.post(
+      await axios.post(
         API_DEL + dossier,
         {},
         {
@@ -55,7 +53,6 @@ const BackOffice = props => {
           }
         }
       );
-      console.log(response);
       //nouveau tableau qui contient tout sauf le dossier supprimé
       const newDevis = devis.filter(item => item.dossierNumber !== dossier);
       setDevis(newDevis);

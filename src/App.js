@@ -36,6 +36,13 @@ function App() {
   }, []);
 
   const saveUserData = newObj => {
+    const dossier = newObj.dossier;
+    if (newObj.currentPage === 8 && dossier) {
+      // on réinitialise les données pour faire un nouveau devis
+      newObj = { ...userDefault };
+      newObj.currentPage = 8;
+      newObj.dossier = dossier;
+    }
     // sauvegarde des choix utilisateurs dans les cookies et mise à jour du state
     Cookies.set("userData", JSON.stringify(newObj), { expires: 1 }); // expire au bout de 1 jour
     setUserData(newObj);

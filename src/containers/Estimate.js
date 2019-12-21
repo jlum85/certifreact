@@ -66,7 +66,7 @@ const Estimate = props => {
             label="Situation actuelle"
             value={tabSituation[devis.propertySituation]}
           />
-          <RowInfo grey={true} label="Pays :" value={devis.country} />
+          <RowInfo grey={true} label="Pays" value={devis.country} />
           <RowInfo label="Ville" value={devis.city} />
 
           <RowInfo
