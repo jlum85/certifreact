@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./Content.css";
+import ShowError from "./ShowError";
 import Cookies from "js-cookie";
 
 const getUserValue = userData => {
@@ -43,9 +44,8 @@ const getClassName = (index, checkedItem) => {
 
 const ContentRadio = props => {
   const [checkedIndex, setCheckedIndex] = useState(-1);
-  // console.log("ContentRadio");
-  // console.log(props);
-  // console.log("checkedIndex", checkedIndex);
+  console.log("ContentRadio");
+  console.log(props);
 
   useEffect(() => {
     // dès qu'on change de page, on récupère les choix qui sont dans les cookies
@@ -55,11 +55,6 @@ const ContentRadio = props => {
       const index = getUserValue(userData);
       setCheckedIndex(index);
     }
-
-    // // dès qu'on change de page, on récupère le choix qui vient de userData
-    // const index = getUserValue(props.userData);
-    // console.log("useEffect", index);
-    // setCheckedIndex(index);
   }, [props.userData.currentPage]);
 
   // on récupère la liste des options qui viennent de props.radioOption
@@ -87,7 +82,12 @@ const ContentRadio = props => {
     }
   };
 
-  return <form className="content-radio">{getRadio()}</form>;
+  return (
+    <>
+      <form className="content-radio">{getRadio()}</form>
+      <ShowError error={props.error} />
+    </>
+  );
 };
 
 export default ContentRadio;

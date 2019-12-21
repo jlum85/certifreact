@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ContentTitle from "../components/ContentTitle";
 import ContentRadio from "../components/ContentRadio";
@@ -11,6 +11,7 @@ import ContentProgress from "../components/ContentProgress";
 import { tabPageContent } from "../Global";
 
 const PageContent = props => {
+  const [error, setError] = useState({ hasError: false, message: "error" });
   // console.log("PageContent");
   // console.log(props);
   const currentPage = props.userData.currentPage;
@@ -29,6 +30,7 @@ const PageContent = props => {
           radioOption={pageContent.radioOption}
           userData={props.userData}
           saveUserData={props.saveUserData}
+          error={error}
         />
       );
 
@@ -39,6 +41,7 @@ const PageContent = props => {
           input={pageContent.input}
           userData={props.userData}
           saveUserData={props.saveUserData}
+          error={error}
         />
       );
       // si on est en page 6 , on utilise le composant ContentBudget
@@ -48,16 +51,18 @@ const PageContent = props => {
           input={pageContent.input}
           userData={props.userData}
           saveUserData={props.saveUserData}
+          error={error}
         />
       );
 
-      // si on est sur l'avant dernière page, on demande les coordonnées avec le composant Contact
-    } else if (pageContent.num === tabPageContent.length - 1) {
+      // si on est en page 7, on demande les coordonnées avec le composant Contact
+    } else if (pageContent.num === 7) {
       return (
         <Contact
           pageContent={pageContent}
           userData={props.userData}
           saveUserData={props.saveUserData}
+          error={error}
         />
       );
 
@@ -83,6 +88,7 @@ const PageContent = props => {
           onNext={props.onNext}
           userData={props.userData}
           saveUserData={props.saveUserData}
+          setError={setError}
         />
       )}
     </section>

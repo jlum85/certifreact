@@ -22,8 +22,6 @@ function App() {
   const [userData, setUserData] = useState({}); // données saisies dans le formulaire
   const [token, setToken] = useState(Cookies.get("token") || "");
 
-  console.log("token", token);
-
   useEffect(() => {
     // Au chargement, on doit vérifier l'existence de données utilisateurs dans les cookies
     let cookie = Cookies.get("userData");

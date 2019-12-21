@@ -10,8 +10,8 @@ const API_BACK = "http://localhost:3000/devis/create";
 
 const ContentProgress = props => {
   const [isLoading, setIsLoading] = useState(false);
-  console.log("ContentProgress");
-  console.log(props);
+  // console.log("ContentProgress");
+  // console.log(props);
 
   // calcul du % de progression en fonction de la page courante
   const getProgress = currentPage => {
@@ -33,54 +33,92 @@ const ContentProgress = props => {
   };
 
   const checkParam = userData => {
-    // on doit accepter les conditions et avoir un mail
-    return userData.accept && userData.mail;
+    const page = userData.currentPage;
+    const result = { hasError: false, message: "error" };
+
+    if (page === 1) {
+      result.hasError = userData.radioType < 0;
+      result.message = "Vous devez sélectionner un type de bien !";
+    } else if (page === 2) {
+      result.hasError = userData.radioState < 0;
+      result.message = "Vous devez sélectionner l'état du bien !";
+    } else if (page === 3) {
+      result.hasError = userData.radioUse < 0;
+      result.message = "Vous devez sélectionner l'usage du bien!";
+    } else if (page === 4) {
+      result.hasError = userData.radioSituation < 0;
+      result.message = "Vous devez sélectionner votre situation !";
+    } else if (page === 5) {
+      // on doit choisir le pays et la ville
+      result.hasError = !userData.country || !userData.city;
+      if (!userData.country) {
+        result.message = "Pays non renseigné !";
+      } else if (!userData.city) {
+        result.message = "Ville non renseignée !";
+      }
+    } else if (page === 6) {
+      // on doit renseigner le montant estimé de l'acquisition ( montant travaux optionnel )
+      result.hasError = userData.acquisition <= 0;
+      result.message = "Montant acquisition non renseigné!";
+    } else if (page === 7) {
+      result.hasError = !userData.accept || !userData.mail;
+      if (!userData.accept) {
+        result.message = "Vous devez accepter les conditions générales !";
+      } else if (!userData.mail) {
+        result.message = "Mail non renseigné !";
+      }
+    }
+    console.log(result);
+    return result;
+  };
+
+  const saveData = async userData => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        API_BACK,
+        {
+          mail: userData.mail,
+          propertyType: userData.radioType,
+          propertyState: userData.radioState,
+          propertyUse: userData.radioUse,
+          propertySituation: userData.radioSituation,
+          country: userData.country,
+          city: userData.city,
+          acquisitionAmount: userData.acquisition,
+          workingAmount: userData.works,
+          notaryFees: userData.notaryFees
+        },
+        {
+          headers: { Accept: "application/json" }
+        }
+      );
+      setIsLoading(false);
+      const dossier = response.data.dossierNumber;
+      if (dossier) {
+        const newObj = { ...props.userData };
+        newObj.currentPage = 8; // pour passer à la page de confirmation
+        newObj.dossier = dossier;
+        props.saveUserData(newObj); // sauvegarde dans le state général
+      } else {
+        alert("An error occured !!");
+      }
+    } catch (err) {
+      console.log(err);
+      alert("An error occured !!", err);
+      setIsLoading(false);
+    }
   };
 
   const onNext = async currentPage => {
-    console.log("onNext");
-    if (currentPage === lastPage - 1) {
-      // vérif des paramètres
-      const userData = props.userData;
-      if (checkParam(userData)) {
-        setIsLoading(true);
-        try {
-          const response = await axios.post(
-            API_BACK,
-            {
-              mail: userData.mail,
-              propertyType: userData.radioType,
-              propertyState: userData.radioState,
-              propertyUse: userData.radioUse,
-              propertySituation: userData.radioSituation,
-              country: userData.country,
-              city: userData.city,
-              acquisitionAmount: userData.acquisition,
-              workingAmount: userData.works,
-              notaryFees: userData.notaryFees
-            },
-            {
-              headers: { Accept: "application/json" }
-            }
-          );
-          setIsLoading(false);
-          const dossier = response.data.dossierNumber;
-          if (dossier) {
-            const newObj = { ...props.userData };
-            newObj.currentPage = 8; // pour passer à la page de confirmation
-            newObj.dossier = dossier;
-            props.saveUserData(newObj); // sauvegarde dans le state général
-          } else {
-            alert("An error occured !!");
-          }
-        } catch (err) {
-          console.log(err);
-          alert("An error occured !!", err);
-          setIsLoading(false);
-        }
+    const checkObj = checkParam(props.userData); // on vérifie si on peut passer à l'étape suivante
+    props.setError({ ...checkObj });
+    if (!checkObj.hasError) {
+      if (currentPage === lastPage - 1) {
+        await saveData(props.userData);
+      } else {
+        props.onNext();
       }
-    } else {
-      props.onNext();
     }
   };
 

@@ -7,11 +7,6 @@ import Cookies from "js-cookie";
 const Contact = props => {
   const [mail, setMail] = useState("");
   const [cdg, setCdg] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [msgError, setMsgError] = useState("error");
-
-  // console.log("Contact");
-  // console.log(props);
 
   useEffect(() => {
     // dès qu'on change de page, on récupère le choix qui sont dans les cookies
@@ -23,25 +18,6 @@ const Contact = props => {
       setCdg(obj.accept);
     }
   }, [props.userData.currentPage]);
-
-  // const setError = msgError => {
-  //   setMsgError(msgError);
-  //   setIsError(true);
-  // };
-
-  // const checkParams = () => {
-  //   let result = false;
-  //   if (!mail) {
-  //     setError("Mail non renseigné");
-  //   } else if (!cdg) {
-  //     setError("Vous devez accepter les conditions générales de vente");
-  //   } else {
-  //     setMsgError();
-  //     setIsError(false);
-  //     result = true;
-  //   }
-  //   return result;
-  // };
 
   return (
     <div className="contact">
@@ -89,9 +65,9 @@ const Contact = props => {
           J’accepte de recevoir par email des propositions de Meilleurtaux.
         </label>
       </div>
-      <p className={"error " + (isError ? "error-show" : "error-hide")}>
+      {/* <p className={"error " + (isError ? "error-show" : "error-hide")}>
         {msgError}
-      </p>
+      </p> */}
     </div>
   );
 };

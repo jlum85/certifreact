@@ -7,10 +7,7 @@ import "../App.css";
 const API_BACK = "http://localhost:3000/user/signin";
 
 const Login = props => {
-  console.log("Login");
-  console.log(props);
   const history = useHistory();
-
   const [password, setPassword] = useState("tothemoon");
   const [isError, setIsError] = useState(false);
   const [msgError, setMsgError] = useState("error");
