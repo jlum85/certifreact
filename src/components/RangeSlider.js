@@ -9,15 +9,26 @@ const RangeSlider = props => {
   // et on a un décalage de -25 qui est la moitié de rangeValue
   const relativeLeft = relativeWidth - 25;
 
+  // pour le responsive on gère un affichage plus simple en mode mobile et sans positionnement relatif
+  // certains className ne servent qu'à masquer / afficher  suivant le mode mobile / desktop
+
   return (
-    <div className="rangeContainer">
-      <div id="rangeSlider">
-        <div id="rangeValue" style={{ left: relativeLeft + "px" }}>
-          {props.value} %
+    <>
+      <div className="rangeContainer">
+        <div id="rangeSlider" className="rangeSliderHideMobile">
+          <div id="rangeValue" style={{ left: relativeLeft + "px" }}>
+            {props.value} %
+          </div>
+          <div
+            id="rangeBarBefore"
+            style={{ width: relativeWidth + "px" }}
+          ></div>
         </div>
-        <div id="rangeBarBefore" style={{ width: relativeWidth + "px" }}></div>
       </div>
-    </div>
+      <div className="rangeMobileHideDesktop">
+        <div className="rangeValueMobile">{props.value} %</div>
+      </div>
+    </>
   );
 };
 

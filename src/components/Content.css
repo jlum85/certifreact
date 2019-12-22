@@ -101,7 +101,6 @@
 .inputMail {
   font-size: 20px;
   width: 300px;
-  /* margin-left: 20px; */
   padding: 0 10px 0 10px;
   font-weight: bold;
   margin-right: 20px;
@@ -126,7 +125,6 @@
 
   .inputCdg {
     font-size: 12px;
-    /* font-weight: normal; */
   }
 }
 
