@@ -64,24 +64,28 @@
 }
 
 @media only screen and (min-width: 375px) and (max-width: 812px) {
-  .content {
+  /* .content {
     align-items: stretch;
-  }
+  } */
 
   .content-radio {
     flex-direction: column;
-    flex: 1;
+    justify-content: flex-start;
+    height: 400px;
+    /* flex: 1; */
   }
   .label-radio {
     width: 100%;
     margin-bottom: 15px;
-    line-height: 48px;
+    /* line-height: 48px; */
     height: 50px;
-    background-color: blue;
+    max-height: 50px;
+    /* background-color: blue; */
     justify-content: start;
     padding-left: 10px;
     font-size: 16px;
     margin-bottom: 30px;
+    color: red;
   }
 
   .contentTitle {
