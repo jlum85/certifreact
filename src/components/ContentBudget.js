@@ -4,12 +4,18 @@ import "./Content.css";
 import Cookies from "js-cookie";
 import ShowError from "./ShowError";
 import RowInput from "../components/RowInput";
+import { API_BACK } from "../Global";
+const axios = require("axios");
+const API = API_BACK + "devis/budget";
 
 const ContentBudget = props => {
   const [acquisition, setAcquisition] = useState(""); // montant estimé acquisition
   const [works, setWorks] = useState(""); // montant estimé des travaux
-  // console.log("ContentBudget");
-  // console.log(props);
+  const [notaryFees, setNotaryFees] = useState(0); // frais de notaires
+  const [totalBudget, setTotalBudget] = useState(0); // frais de notaires
+
+  const propertyState = props.userData.radioState;
+  console.log(props.userData);
 
   // conversion montant formaté en nombre
   const castToNum = value => {
@@ -22,25 +28,23 @@ const ContentBudget = props => {
     }
   };
 
-  // calcul des frais de notaire
-  const notaryFees = acquisitionFee => {
-    const value = castToNum(acquisitionFee);
-    if (value > 0) {
-      // un taux de 1,80% sur le prix de l'achat, pour un bien neuf : radioState = 1
-      // un taux de 7,38% sur le prix de l'achat, pour un bien ancien :radioState= 0
-      if (props.userData.radioState === 1) {
-        return Math.round((value * 1.8) / 100);
-      } else {
-        return Math.round((value * 7.38) / 100);
-      }
-    }
-    return 0;
-  };
+  // const saveNotaryFee = value => {
+  //   const newObj = { ...props.userData };
+  //   newObj.notaryFees = value; // sauvegarde des frais de notaire
+  //   props.saveUserData(newObj); // sauvegarde dans le state général
+  // };
+  // saveNotaryFee(notaryFees);
 
-  // calcul du total budget
-  const totalBudget = Math.round(
-    castToNum(acquisition) + castToNum(works) + notaryFees(acquisition)
-  );
+  useEffect(() => {
+    // dès qu'on change de page, on récupère le choix qui sont dans les cookies
+    let cookie = Cookies.get("userData");
+    if (cookie) {
+      // on met à jour le state à partir des données du cookie
+      const obj = JSON.parse(cookie);
+      setAcquisition(castToNum(obj.acquisition));
+      setWorks(castToNum(obj.works));
+    }
+  }, [notaryFees]);
 
   useEffect(() => {
     // dès qu'on change de page, on récupère le choix qui sont dans les cookies
@@ -53,6 +57,39 @@ const ContentBudget = props => {
     }
   }, [props.userData.currentPage]);
 
+  useEffect(() => {
+    const fetchData = async (
+      propertyState,
+      acquisitionAmount,
+      workingAmount
+    ) => {
+      try {
+        const response = await axios.post(
+          API,
+          {
+            propertyState: propertyState,
+            acquisitionAmount: acquisitionAmount,
+            workingAmount: workingAmount
+          },
+          { headers: { Accept: "application/json" } }
+        );
+        if (response.data) {
+          setNotaryFees(response.data.notaryFees);
+          setTotalBudget(response.data.totalBudget);
+        }
+      } catch (err) {
+        console.log(err.message);
+        alert("An error occured !!");
+      }
+    };
+
+    const acquisitionAmount = castToNum(acquisition);
+    const workingAmount = castToNum(works);
+    if (propertyState === 0 || propertyState === 1) {
+      fetchData(propertyState, acquisitionAmount, workingAmount);
+    }
+  }, [propertyState, acquisition, works]);
+
   return (
     <>
       <div className="df-col">
@@ -64,7 +101,7 @@ const ContentBudget = props => {
           onChange={value => {
             const newObj = { ...props.userData };
             newObj.acquisition = Math.round(castToNum(value));
-            newObj.notaryFees = notaryFees(newObj.acquisition); // sauvegarde des frais de naotaire
+            //newObj.notaryFees = notaryFees(newObj.acquisition); // sauvegarde des frais de notaire
             props.saveUserData(newObj); // sauvegarde dans le state général
             setAcquisition(castToNum(value));
           }}
@@ -86,7 +123,8 @@ const ContentBudget = props => {
           grey={true}
           name="notaryFees"
           label="Frais de notaire"
-          value={notaryFees(acquisition)}
+          //value={notaryFees(acquisition)}
+          value={notaryFees}
         />
         <RowInput
           name="totalBudget"
