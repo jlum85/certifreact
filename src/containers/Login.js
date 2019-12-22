@@ -9,7 +9,7 @@ const API = API_BACK + "user/signin";
 
 const Login = props => {
   const history = useHistory();
-  const [password, setPassword] = useState("tothemoon");
+  const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
   const [msgError, setMsgError] = useState("error");
 
