@@ -64,10 +64,6 @@
 }
 
 @media only screen and (min-width: 375px) and (max-width: 812px) {
-  /* .content {
-    align-items: stretch;
-  } */
-
   .content-radio {
     flex-direction: column;
     justify-content: flex-start;
@@ -85,7 +81,7 @@
   }
 
   .contentTitle {
-    font-size: 22px;
+    font-size: 20px;
   }
   .info {
     margin-left: 10px;
