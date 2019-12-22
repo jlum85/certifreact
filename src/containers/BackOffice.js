@@ -14,9 +14,6 @@ const BackOffice = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [token] = useState(props.token || "");
 
-  // console.log("BackOffice");
-  // console.log("token", props.token);
-
   useEffect(() => {
     const fetchData = async () => {
       try {

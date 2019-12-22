@@ -14,8 +14,6 @@ const PageContent = props => {
     message: "error",
     page: 0 // on stocke l'erreur de le dernière page mais si on fait précédent on n'affiche que si page est égal à la  page courante
   });
-  // console.log("PageContent");
-  // console.log(props);
   const currentPage = props.userData.currentPage;
 
   const getComponent = page => {

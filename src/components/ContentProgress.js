@@ -10,8 +10,6 @@ const API = API_BACK + "devis/create";
 
 const ContentProgress = props => {
   const [isLoading, setIsLoading] = useState(false);
-  // console.log("ContentProgress");
-  // console.log(props);
 
   // calcul du % de progression en fonction de la page courante
   const getProgress = currentPage => {
@@ -44,7 +42,7 @@ const ContentProgress = props => {
       result.message = "Vous devez sélectionner l'état du bien !";
     } else if (page === 3) {
       result.hasError = userData.radioUse < 0;
-      result.message = "Vous devez sélectionner l'usage du bien!";
+      result.message = "Vous devez sélectionner l'usage du bien !";
     } else if (page === 4) {
       result.hasError = userData.radioSituation < 0;
       result.message = "Vous devez sélectionner votre situation !";

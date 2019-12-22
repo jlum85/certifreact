@@ -11,7 +11,6 @@ const RangeSlider = props => {
 
   // pour le responsive on gère un affichage plus simple en mode mobile et sans positionnement relatif
   // certains className ne servent qu'à masquer / afficher  suivant le mode mobile / desktop
-
   return (
     <>
       <div className="rangeContainer">

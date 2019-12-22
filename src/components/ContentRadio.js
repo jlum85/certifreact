@@ -44,8 +44,6 @@ const getClassName = (index, checkedItem) => {
 
 const ContentRadio = props => {
   const [checkedIndex, setCheckedIndex] = useState(-1);
-  // console.log("ContentRadio");
-  // console.log(props);
 
   useEffect(() => {
     // dès qu'on change de page, on récupère les choix qui sont dans les cookies

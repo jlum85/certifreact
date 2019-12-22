@@ -4,8 +4,6 @@ import logo from "../images/logo.jpg";
 import "../App.css";
 
 const Header = props => {
-  // console.log("Header");
-  // console.log(props);
   const history = useHistory();
 
   return (
