@@ -15,7 +15,6 @@ const ContentBudget = props => {
   const [totalBudget, setTotalBudget] = useState(0); // frais de notaires
 
   const propertyState = props.userData.radioState;
-  console.log(props.userData);
 
   // conversion montant formaté en nombre
   const castToNum = value => {
@@ -27,13 +26,6 @@ const ContentBudget = props => {
       return 0;
     }
   };
-
-  // const saveNotaryFee = value => {
-  //   const newObj = { ...props.userData };
-  //   newObj.notaryFees = value; // sauvegarde des frais de notaire
-  //   props.saveUserData(newObj); // sauvegarde dans le state général
-  // };
-  // saveNotaryFee(notaryFees);
 
   useEffect(() => {
     // dès qu'on change de page, on récupère le choix qui sont dans les cookies

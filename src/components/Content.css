@@ -71,21 +71,17 @@
   .content-radio {
     flex-direction: column;
     justify-content: flex-start;
-    height: 400px;
-    /* flex: 1; */
+    height: 320px;
   }
   .label-radio {
     width: 100%;
     margin-bottom: 15px;
-    /* line-height: 48px; */
     height: 50px;
     max-height: 50px;
-    /* background-color: blue; */
     justify-content: start;
     padding-left: 10px;
     font-size: 16px;
     margin-bottom: 30px;
-    color: red;
   }
 
   .contentTitle {

@@ -89,8 +89,7 @@ const ContentProgress = props => {
           country: userData.country,
           city: userData.city,
           acquisitionAmount: userData.acquisition,
-          workingAmount: userData.works,
-          notaryFees: userData.notaryFees
+          workingAmount: userData.works
         },
         {
           headers: { Accept: "application/json" }
