@@ -59,7 +59,7 @@ const ContentProgress = props => {
     } else if (page === 6) {
       // on doit renseigner le montant estimé de l'acquisition ( montant travaux optionnel )
       result.hasError = userData.acquisition <= 0;
-      result.message = "Montant acquisition non renseigné!";
+      result.message = "Montant acquisition non renseigné !";
     } else if (page === 7) {
       result.hasError = !userData.accept || !userData.mail;
       if (!userData.accept) {
