@@ -13,16 +13,13 @@ const checkMail = email => {
     result = 0;
   } else {
     // expression régulière pour valider le mail
-    //   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     if (re.test(email)) {
       result = 1;
     } else {
       result = -1;
     }
   }
-  // console.log("checkMail", email, result);
   return result;
 };
 
@@ -56,20 +53,22 @@ const Contact = props => {
           Adresse e-mail emprunteur *
           <img className="info" src={infos} alt="infos"></img>
         </label>
-        <input
-          className="inputMail"
-          type="email"
-          name="mail"
-          value={mail}
-          onChange={event => {
-            const value = event.target.value.trim();
-            const newObj = { ...props.userData };
-            newObj.mail = value;
-            props.saveUserData(newObj); // sauvegarde dans le state général
-            setMail(value);
-          }}
-        />
-        <ValidationIcon status={checkMail(mail)} />
+        <div className="containerMail">
+          <input
+            className="inputMail"
+            type="email"
+            name="mail"
+            value={mail}
+            onChange={event => {
+              const value = event.target.value.trim();
+              const newObj = { ...props.userData };
+              newObj.mail = value;
+              props.saveUserData(newObj); // sauvegarde dans le state général
+              setMail(value);
+            }}
+          />
+          <ValidationIcon status={checkMail(mail)} />
+        </div>
       </div>
       <div className="inputCdg">
         <input

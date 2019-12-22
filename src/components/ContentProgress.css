@@ -77,7 +77,6 @@
 }
 
 .inProgress p {
-  /* font-family: "Oswald", sans-serif; */
   font-size: 30px;
   padding-left: 10px;
 }
@@ -86,4 +85,15 @@
   padding-top: 10px;
   width: 50;
   height: 50;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .rangeContainer {
+    /* pas de progress en mode mobile comme sur le site officiel  meilleurtaux */
+    display: none;
+  }
+  .progress {
+    margin-top: 0;
+    height: 70px;
+  }
 }

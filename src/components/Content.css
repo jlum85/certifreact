@@ -1,7 +1,9 @@
+/* -------------------- PageContent  -------------------- */
 .content {
   display: flex;
   flex-direction: column;
   padding-top: 30px;
+  flex: 1;
 }
 
 .contentTop {
@@ -44,12 +46,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  /* text-decoration: none; */
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-weight: 800;
   font-size: 20px;
-
   background-color: #fff;
   color: #000;
   box-shadow: 0 4px 0 #e4e4e4;
@@ -63,21 +63,71 @@
   border-color: var(--color-orange);
 }
 
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .content {
+    align-items: stretch;
+  }
+
+  .content-radio {
+    flex-direction: column;
+    flex: 1;
+  }
+  .label-radio {
+    width: 100%;
+    margin-bottom: 15px;
+    line-height: 48px;
+    justify-content: start;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .contentTitle {
+    font-size: 22px;
+  }
+  .info {
+    margin-left: 10px;
+  }
+}
+
 /* -------------------- Coordonnées  -------------------- */
+
+.containerMail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .inputMail {
   font-size: 20px;
-  width: 400px;
-  margin-left: 20px;
+  width: 300px;
+  /* margin-left: 20px; */
   padding: 0 10px 0 10px;
   font-weight: bold;
   margin-right: 20px;
+  line-height: 30px;
+  background-color: white; /* pour safari  */
 }
 
 .inputCdg {
   color: black;
   font-family: "Oswald", sans-serif;
   padding: 20px;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .containerMail {
+    width: 100%;
+  }
+  .inputMail {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  .inputCdg {
+    font-size: 12px;
+    /* font-weight: normal; */
+  }
 }
 
 /* -------------------- ContentLocation  -------------------- */
@@ -88,6 +138,7 @@
   margin-left: 20px;
   padding: 0 10px 0 10px;
   font-weight: bold;
+  line-height: 30px;
 }
 
 .inputCity {
@@ -96,6 +147,7 @@
   margin-left: 20px;
   padding: 0 10px 0 10px;
   font-weight: bold;
+  line-height: 30px;
 }
 
 .autocomplete {
@@ -142,6 +194,20 @@
   width: 50px;
 }
 
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .inputCountry {
+    background-color: white;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .inputCity {
+    border: solid 1px;
+    margin: 0;
+    width: 275px;
+  }
+}
+
 /* -------------------- ContentBudget  -------------------- */
 .inputNum {
   font-size: 20px;
@@ -159,4 +225,10 @@
 .euro {
   font-size: 20px;
   margin-left: 10px;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .inputNum {
+    margin-left: 0;
+  }
 }

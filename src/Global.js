@@ -102,7 +102,7 @@ export const tabPageContent = [
 // formatage des montants pour les rendre plus lisibles
 export const formattedNumber = value => {
   if (value) {
-    return value.toLocaleString();
+    return Number(value).toLocaleString();
   } else {
     return 0;
   }

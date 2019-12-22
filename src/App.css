@@ -52,6 +52,12 @@ body {
   height: 60px;
 }
 
+.amount {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .rowGrey {
   background-color: #f1f1f1;
 }
@@ -70,6 +76,20 @@ body {
 
 .error-hide {
   color: white;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .rowInput {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 100px;
+  }
+
+  .pad-tb30 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
 
 /* -------------------- HEADER  -------------------- */
@@ -108,6 +128,38 @@ header p {
   align-items: center;
 }
 
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  header p {
+    display: none;
+  }
+  .df-sb {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerLeft {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .wrapper {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  .ml-15 {
+    margin-left: 0px;
+  }
+
+  .orange-btn {
+    width: 120px;
+    line-height: 30px;
+    font-size: 16px;
+  }
+}
+
 /* -------------------- CONTENT  -------------------- */
 
 .loading {
@@ -124,12 +176,27 @@ section {
 
 .labelInput {
   font-size: 20px;
-  width: calc(50% - 20px);
+  width: calc(45% - 20px);
   display: flex;
+  padding-right: 20px;
   justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .labelInput {
+    font-size: 16px;
+    width: 100%;
+    padding-right: 0px;
+    padding-bottom: 10px;
+  }
 }
 
 /* -------------------- FOOTER  -------------------- */
+
+footer {
+  height: 80px;
+}
 
 footer span {
   font-size: 13px;
@@ -150,16 +217,15 @@ footer span {
 
 .contactBody {
   display: flex;
-  margin: 20px 50px 20px 50px;
+  margin: 20px 0 20px 0;
   justify-content: space-between;
   height: 200px;
+  align-items: stretch;
 }
 
 .infoDevis {
   color: white;
   background-color: var(--color-orange);
-  margin-right: 60px;
-  margin-left: 100px;
   font-size: 24px;
   font-family: "Oswald", sans-serif;
   display: flex;
@@ -168,11 +234,30 @@ footer span {
   line-height: 35px;
   text-align: center;
   max-width: 300px;
+  min-width: 215px;
+  overflow: hidden;
 }
 
 .logoContact {
-  width: 600px;
-  border-left: 20px;
+  object-fit: cover;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .contactBody {
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+  }
+  .infoDevis {
+    width: 100%;
+    font-size: 16px;
+    height: 100px;
+    padding: 0px;
+    line-height: 30px;
+  }
+  .contact {
+    margin-bottom: 0;
+  }
 }
 
 /* -------------------- Conforming  -------------------- */
@@ -306,4 +391,43 @@ footer span {
 
 .rowGrey {
   background-color: rgb(215, 222, 226);
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .containerSynthese {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .rowSynthese {
+    flex-direction: column;
+    width: 100%;
+  }
+  .headerSynthese {
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+  }
+  .headerSynthese span {
+    padding: 5px;
+  }
+
+  .removeButton {
+    display: none;
+  }
+
+  .bloclinkDevis {
+    flex: 1 1;
+    padding: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .size1,
+  .size2 {
+    width: 100%;
+    text-align: left;
+  }
 }
