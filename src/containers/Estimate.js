@@ -48,7 +48,7 @@ const Estimate = props => {
       {isLoading ? (
         <LoadingGif title="Chargement en cours" />
       ) : (
-        <div>
+        <>
           <RowInfo grey={true} label="Numéro de Dossier " value={id} />
           <RowInfo label="Mail" value={devis.mail} />
           <RowInfo
@@ -87,7 +87,7 @@ const Estimate = props => {
             label="Budget total estimé du projet"
             value={formatNum(devis.totalBudget)}
           />
-        </div>
+        </>
       )}
     </section>
   );

@@ -90,6 +90,9 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .rowMobile {
+    height: 60px;
+  }
 }
 
 /* -------------------- HEADER  -------------------- */
@@ -247,6 +250,7 @@ footer span {
     flex-direction: column;
     align-items: center;
     height: 250px;
+    margin: 10px 0 10px 0;
   }
   .infoDevis {
     width: 100%;
@@ -412,10 +416,6 @@ footer span {
     padding: 5px;
   }
 
-  .removeButton {
-    display: none;
-  }
-
   .bloclinkDevis {
     flex: 1 1;
     padding: 10px;
@@ -429,5 +429,9 @@ footer span {
   .size2 {
     width: 100%;
     text-align: left;
+  }
+
+  .containerSynthese {
+    height: auto;
   }
 }
